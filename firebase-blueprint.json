@@ -1,0 +1,168 @@
+{
+  "entities": {
+    "Story": {
+      "title": "Story Definition",
+      "description": "A mystery, horror, or ancient Tamil secret story",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Story title in Tamil or bilingual"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Story subtitle or translated title"
+        },
+        "thumbnail": {
+          "type": "string",
+          "description": "URL or storage path of the story thumbnail"
+        },
+        "content": {
+          "type": "string",
+          "description": "Full text content of the story"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["mystery", "horror", "ancient-secrets", "history"],
+          "description": "Story classification"
+        },
+        "readsCount": {
+          "type": "integer",
+          "description": "Total times the story was read"
+        },
+        "creatorName": {
+          "type": "string",
+          "description": "Name of the creator who posted it"
+        },
+        "isTrending": {
+          "type": "boolean",
+          "description": "Whether the story is currently trending"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the story was published"
+        }
+      },
+      "required": ["title", "content", "category", "readsCount", "createdAt"]
+    },
+    "Comment": {
+      "title": "Comment Definition",
+      "description": "User feedback comments on mystery stories",
+      "type": "object",
+      "properties": {
+        "storyId": {
+          "type": "string",
+          "description": "The linked story document ID"
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the author of the comment"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Display name of the commenter"
+        },
+        "userPhoto": {
+          "type": "string",
+          "description": "Avatar image URL of the user"
+        },
+        "commentText": {
+          "type": "string",
+          "description": "Inside comment text"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the comment was posted"
+        }
+      },
+      "required": ["storyId", "userId", "userName", "commentText", "createdAt"]
+    },
+    "Bookmark": {
+      "title": "Bookmark",
+      "description": "Saved stories per user",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The custom user's UID"
+        },
+        "storyId": {
+          "type": "string",
+          "description": "The bookmarked story's ID"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the bookmark was created"
+        }
+      },
+      "required": ["userId", "storyId", "createdAt"]
+    },
+    "ReadingProgress": {
+      "title": "Reading Progress",
+      "description": "Tracks scroll progress of a reader on a story",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User ID of the reader"
+        },
+        "storyId": {
+          "type": "string",
+          "description": "The story document ID"
+        },
+        "scrollPercent": {
+          "type": "number",
+          "description": "Percentage read (0 to 100)"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last time progress was updated"
+        }
+      },
+      "required": ["userId", "storyId", "scrollPercent", "updatedAt"]
+    },
+    "Newsletter": {
+      "title": "Newsletter Subscription",
+      "description": "Subscribers for mystery releases",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Subscriber's email address"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Time of subscription"
+        }
+      },
+      "required": ["email", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/stories/{storyId}": {
+      "schema": { "$ref": "#/entities/Story" },
+      "description": "Directory of mystery stories and posts"
+    },
+    "/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/Comment" },
+      "description": "User generated feedback and comments"
+    },
+    "/bookmarks/{bookmarkId}": {
+      "schema": { "$ref": "#/entities/Bookmark" },
+      "description": "Bookmarked stories mapped by userId_storyId"
+    },
+    "/readingProgress/{progressId}": {
+      "schema": { "$ref": "#/entities/ReadingProgress" },
+      "description": "Reading progress map by userId_storyId"
+    },
+    "/newsletter/{subscriberId}": {
+      "schema": { "$ref": "#/entities/Newsletter" },
+      "description": "Newsletter subscriber list"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cinzel", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-mystery-black: #050505;
+  --color-mystery-dark: #0f0f12;
+  --color-mystery-gold: #c5a86a;
+  --color-mystery-gold-light: #dfca9f;
+  --color-mystery-red: #8e1b1b;
+  --color-mystery-crimson: #bf2121;
+}
+
+body {
+  background-color: var(--color-mystery-black);
+  color: #e5e7eb;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 #09090b;
+}
+
+/* Custom glow borders and glass style */
+.glass-panel {
+  background: rgba(15, 15, 18, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 168, 106, 0.15);
+}
+
+.glass-panel-red {
+  background: rgba(15, 15, 18, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(142, 27, 27, 0.25);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(197, 168, 106, 0.15);
+}
+
+.red-glow {
+  box-shadow: 0 0 20px rgba(142, 27, 27, 0.25);
+}
+
+/* Custom scrollbar style */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mystery-gold);
+}

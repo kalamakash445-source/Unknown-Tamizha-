@@ -1,0 +1,6 @@
+{
+  "name": "Unknown Tamizha",
+  "description": "A modern premium dark mystery, horror, and ancient Tamil historical secrets platform with an AI Story Generator and YouTube Creator tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
